@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Dha  Escourts Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0A0A0A;--near-black:#141414;--white:#FFFFFF;
+    --paper:#F3F3F0;--paper-2:#E9E9E4;--line:#D6D6D0;
+    --muted:#6E6E68;--muted-lt:#B9B9B2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+
+  .eyebrow{
+    font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:0.6;}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 40px;background:var(--white);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;}
+  .logo em{font-style:italic;color:var(--muted);}
+  .back-link{
+    font-family:'Space Mono',monospace;font-size:0.78rem;letter-spacing:0.03em;
+    display:inline-flex;align-items:center;gap:8px;color:var(--muted);
+  }
+  .back-link:hover{color:var(--black);}
+
+  .product-detail{
+    max-width:1100px;margin:0 auto;
+    padding:64px 40px 40px;
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;
+  }
+
+  /* gallery */
+  .gallery-main{
+    aspect-ratio:1/1;width:100%;
+    background:repeating-linear-gradient(45deg, rgba(10,10,10,0.05) 0 2px, transparent 2px 14px);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--muted);
+    overflow:hidden;
+  }
+  .gallery-main img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery-thumbs{display:flex;gap:10px;margin-top:14px;}
+  .gallery-thumb{
+    flex:1;aspect-ratio:1/1;
+    background:repeating-linear-gradient(45deg, rgba(10,10,10,0.05) 0 2px, transparent 2px 14px);
+    border:1px solid var(--line);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);
+    transition:border-color .2s ease;
+    overflow:hidden;
+  }
+  .gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery-thumb.active,.gallery-thumb:hover{border-color:var(--black);}
+  .product-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .thumb-fallback{
+    width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);
+  }
+
+  /* info */
+  .info-code{font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--muted);}
+  .info-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:2.2rem;margin-top:14px;line-height:1.15;
+  }
+  .info-price{
+    font-family:'Space Mono',monospace;font-size:1.2rem;font-weight:700;margin-top:16px;
+  }
+  .info-desc{margin-top:24px;font-size:0.98rem;line-height:1.7;color:var(--muted);max-width:440px;}
+
+  .book-btn-lg{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:34px;
+    font-family:'Space Mono',monospace;font-size:0.9rem;font-weight:700;letter-spacing:0.03em;
+    background:var(--black);color:var(--white);
+    padding:16px 30px;border-radius:100px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .book-btn-lg:hover{transform:translateY(-2px);background:var(--near-black);}
+  .book-btn-lg svg{width:18px;height:18px;}
+
+  /* more products */
+  .more-products{background:var(--paper);padding:90px 40px 100px;margin-top:40px;}
+  .section-head{
+    max-width:1100px;margin:0 auto 46px;color:var(--muted);
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.9rem;color:var(--black);margin-top:14px;
+  }
+  .product-grid{
+    max-width:1100px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+  }
+  .product-card{
+    display:flex;flex-direction:column;
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--paper);transition:background .3s ease;
+  }
+  .product-card:hover{background:var(--paper-2);}
+  .product-card .product-link{display:flex;flex-direction:column;flex:1;color:inherit;}
+  .product-thumb{
+    aspect-ratio:1/1;width:100%;
+    background:repeating-linear-gradient(45deg, rgba(10,10,10,0.05) 0 2px, transparent 2px 14px);
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  .product-thumb span{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);}
+  .product-info{padding:20px 22px 24px;}
+  .product-code{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);}
+  .product-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;margin-top:10px;}
+  .product-price{margin-top:10px;font-family:'Space Mono',monospace;font-size:0.85rem;font-weight:700;}
+  .book-btn{
+    display:block;text-align:center;
+    font-family:'Space Mono',monospace;font-size:0.78rem;letter-spacing:0.05em;font-weight:700;
+    background:var(--black);color:var(--white);
+    padding:13px 10px;margin:0 22px 22px;border-radius:100px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .book-btn:hover{background:var(--near-black);transform:translateY(-1px);}
+
+  footer{
+    background:var(--black);color:var(--muted-lt);text-align:center;padding:26px 20px 32px;
+    font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.04em;
+  }
+
+  /* floating buttons */
+  .float-actions{position:fixed;right:22px;bottom:22px;z-index:100;display:flex;flex-direction:column;gap:14px;}
+  .float-btn{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25);transition:transform .2s ease, box-shadow .2s ease;position:relative;}
+  .float-btn svg{width:24px;height:24px;}
+  .float-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 26px rgba(0,0,0,0.3);}
+  .float-call{background:var(--white);color:var(--black);border:1.5px solid var(--black);}
+  .float-whatsapp{background:var(--black);color:var(--white);}
+  .float-label{position:absolute;right:66px;top:50%;transform:translateY(-50%);background:var(--black);color:var(--white);font-family:'Space Mono',monospace;font-size:0.7rem;padding:6px 12px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease;}
+  .float-btn:hover .float-label{opacity:1;}
+
+  @media (max-width:860px){
+    .product-detail{grid-template-columns:1fr;gap:36px;padding:44px 22px 20px;}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .more-products{padding:70px 22px 80px;}
+  }
+  @media (max-width:560px){
+    header{padding:18px 20px;}
+    .product-grid{grid-template-columns:1fr;}
+    .float-actions{right:16px;bottom:16px;gap:12px;}
+    .float-btn{width:50px;height:50px;}
+    .float-label{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">DHA<em>Escourts</em> Services</div>
+  <a href="shape-your-business.html#products" class="back-link">&larr; Back to all products</a>
+</header>
+
+<div class="product-detail" id="productDetail">
+  <!-- filled by JS -->
+</div>
+
+<section class="more-products">
+  <div class="section-head">
+    <div class="eyebrow">You may also like</div>
+    <h2>More products</h2>
+  </div>
+  <div class="product-grid" id="moreProductsGrid"></div>
+</section>
+
+<footer>© Dha Escourts Service —   WHatsapp Us For More Details </footer>
+
+<div class="float-actions">
+  <a href="tel:+CALLNUMBER" class="float-btn float-call" id="floatCallBtn" aria-label="Call us">
+    <span class="float-label">Call us</span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.57 1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+  <a href="#" class="float-btn float-whatsapp" id="floatWaBtn" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+    <span class="float-label">WhatsApp</span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.65 0-3.2-.45-4.52-1.24l-.32-.19-3.01.79.8-2.93-.21-.3A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.42-5.99c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+  </a>
+</div>
+
+<script src="products.js"></script>
+<script src="shared.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+
+  document.getElementById('floatCallBtn').href = 'tel:+' + CALL_NUMBER;
+  document.getElementById('floatWaBtn').href = waLink('Hi, I have a question.');
+
+  function imgTagHTML(filename, altText){
+    return `<img src="images/${filename}" alt="${altText}"
+      onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('span'),{className:'thumb-fallback',textContent:'${filename}'}));">`;
+  }
+
+  function renderGallery(p){
+    const main = document.getElementById('galleryMain');
+    main.innerHTML = imgTagHTML(p.images[0], p.name);
+    document.querySelectorAll('.gallery-thumb').forEach((t,i)=>{
+      t.addEventListener('click', ()=>{
+        main.innerHTML = imgTagHTML(p.images[i], p.name);
+        document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+      });
+    });
+  }
+
+  const detail = document.getElementById('productDetail');
+  detail.innerHTML = `
+    <div>
+      <div class="gallery-main" id="galleryMain">${imgTagHTML(product.images[0], product.name)}</div>
+      <div class="gallery-thumbs">
+        ${product.images.map((img,i)=>`<div class="gallery-thumb ${i===0?'active':''}">${imgTagHTML(img, product.name)}</div>`).join('')}
+      </div>
+    </div>
+    <div>
+      <div class="info-code">${product.code} &nbsp;·&nbsp; ${product.categoryLabel}</div>
+      <h1 class="info-title">${product.name}</h1>
+      <div class="info-price">${product.price}</div>
+      <p class="info-desc">${product.description}</p>
+      <a class="book-btn-lg" href="${bookNowLink(product)}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.65 0-3.2-.45-4.52-1.24l-.32-.19-3.01.79.8-2.93-.21-.3A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.42-5.99c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+        Book Now
+      </a>
+    </div>
+  `;
+  renderGallery(product);
+  renderMoreProducts('moreProductsGrid', product.id, 8);
+</script>
+
+</body>
+</html>
